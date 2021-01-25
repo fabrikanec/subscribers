@@ -19,8 +19,8 @@ public class Camel extends RouteBuilder {
      */
     public void configure() {
 
-        
-        from("file:src/data&scheduler=quartz2://timer1?cron=0+00+21+*+*+*").to("json-validator:myschema.json").
+
+        from("file:src/data&scheduler=quartz2&scheduler.cron=0+00+21+*+*+*").to("json-validator:myschema.json").
                 //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
         to("file:target/well");
 

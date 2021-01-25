@@ -12,9 +12,6 @@
 </head>
 
 <body>
-<div>
-    <h1>Super app!</h1>
-</div>
 
 <div>
     <%
@@ -28,12 +25,24 @@
         </div>
 
         <form method="post">
-            <label>Name:
+            <label>First name:
                 <input type="text" name="name"><br/>
             </label>
-            <label>Password:
+            <label>Last name:
                 <input type="password" name="pass"><br/>
             </label>
+            <label>Work phone:
+                <input type="password" name="pass"><br/>
+            </label>
+            <label>Mobile phone:
+                <input type="password" name="pass"><br/>
+            </label>
+            <label>Email:
+                <input type="password" name="pass"><br/>
+            </label>
+
+
+
             <button type="submit">Submit</button>
         </form>
     </div>

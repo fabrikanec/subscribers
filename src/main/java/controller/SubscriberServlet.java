@@ -6,7 +6,7 @@ import model.Subscriber;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,8 +19,8 @@ public class SubscriberServlet extends HttpServlet {
 
 //    private static final Logger logger = LoggerFactory.getLogger(SubscriberServlet.class);
 
-    @Resource
-    SubscriberDao subscriberDao;
+//    @Resource
+//    SubscriberDao subscriberDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class SubscriberServlet extends HttpServlet {
         String password = req.getParameter("pass");
         Subscriber user = new Subscriber();
 //        logger.info("start");
-        subscriberDao.createSubscriber();
+        new  SubscriberDaoCsvImpl().createSubscriber();
 //        Model model = Model.getInstance();
 //        model.add(user);
 

@@ -13,4 +13,9 @@ public class SubscriberDaoCsvImpl implements SubscriberDao {
 //        logger.info("createSubscriber");
         System.out.println("createSubscriber");
     }
+
+    @Override
+    public void createJson() {
+
+    }
 }

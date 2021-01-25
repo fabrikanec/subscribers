@@ -3,32 +3,37 @@
   "definitions": {},
   "id": "my-schema",
   "properties": {
-    "id": {
-      "default": 1,
-      "description": "An explanation about the purpose of this instance.",
+    "mobileNumber": {
       "id": "/properties/id",
       "title": "The id schema",
-      "type": "integer"
+      "type": "string"
+    },
+    "email": {
+      "id": "/properties/id",
+      "title": "The id schema",
+      "type": "string"
+    },
+    "workNumber": {
+      "id": "/properties/id",
+      "title": "The id schema",
+      "type": "string"
     },
     "name": {
-      "default": "A green door",
-      "description": "An explanation about the purpose of this instance.",
+
       "id": "/properties/name",
       "title": "The name schema",
       "type": "string"
     },
-    "price": {
-      "default": 12.5,
-      "description": "An explanation about the purpose of this instance.",
-      "id": "/properties/price",
+    "surname": {
+      "id": "/properties/surname",
       "title": "The price schema",
-      "type": "number"
+      "type": "string"
     }
   },
   "required": [
     "name",
-    "id",
-    "price"
+    "surname",
+    "workNumber"
   ],
   "type": "object"
 }

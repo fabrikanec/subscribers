@@ -3,6 +3,7 @@ package controller;
 import dao.SubscriberDao;
 import dao.SubscriberDaoCsvImpl;
 import model.Subscriber;
+import service.SubscriberService;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,8 @@ public class SubscriberServlet extends HttpServlet {
 //    @Resource
 //    SubscriberDao subscriberDao;
 
+    SubscriberService subscriberService = new SubscriberService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/add.jsp");
@@ -30,15 +33,7 @@ public class SubscriberServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String password = req.getParameter("pass");
-        Subscriber user = new Subscriber();
-//        logger.info("start");
-        new  SubscriberDaoCsvImpl().createSubscriber();
-//        Model model = Model.getInstance();
-//        model.add(user);
-
-//        req.setAttribute("userName", name);
+        SubscriberService.createJson(req, resp);
         doGet(req, resp);
     }
 

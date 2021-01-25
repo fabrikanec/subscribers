@@ -23,7 +23,7 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
-        <package>org.lizhenhai</package>
+        <package>main</package>
     </camelContext>
 
 </beans>

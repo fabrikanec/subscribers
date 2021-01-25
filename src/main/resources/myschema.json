@@ -4,29 +4,18 @@
   "id": "my-schema",
   "properties": {
     "mobileNumber": {
-      "id": "/properties/id",
-      "title": "The id schema",
       "type": "string"
     },
     "email": {
-      "id": "/properties/id",
-      "title": "The id schema",
       "type": "string"
     },
     "workNumber": {
-      "id": "/properties/id",
-      "title": "The id schema",
       "type": "string"
     },
     "name": {
-
-      "id": "/properties/name",
-      "title": "The name schema",
       "type": "string"
     },
     "surname": {
-      "id": "/properties/surname",
-      "title": "The price schema",
       "type": "string"
     }
   },

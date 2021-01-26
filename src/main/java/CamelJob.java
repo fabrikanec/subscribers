@@ -22,11 +22,13 @@ public class CamelJob {
 
         sourcePath = config.getString("services.camelJob.source");
         dataPath = config.getString("services.camelJob.data");
+        cron = config.getString("services.camelJob.cron");
     }
 
     private static final Logger logger = LoggerFactory.getLogger(CamelJob.class);
     private static String sourcePath;
     private static String dataPath;
+    private static String cron;
     /**
      * A main() so we can easily run these routing rules in our IDE
      */
@@ -44,8 +46,8 @@ public class CamelJob {
         camel.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-//                from("file:" + sourcePath + "?scheduler=quartz2&scheduler.cron=0+27+13+*+*+?").log("files are in processing").to("json-validator:schema.json").
-                from("file:src/work").log("test log").to("json-validator:schema.json").
+                from("file:" + sourcePath + "?scheduler=quartz2&scheduler.cron=" + cron).log("files are in processing").to("json-validator:schema.json").
+//                from("file:src/work").log("test log").to("json-validator:schema.json").
                         //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
                                 to("file:" + dataPath);
             }

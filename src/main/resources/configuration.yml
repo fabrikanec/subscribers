@@ -2,6 +2,7 @@ services:
   front:
     image: mysql
     container_name: mysql_db
+    work_dir: /Users/artemnovikov/Downloads/
   camelJob:
     source: src/work
     data: target/data

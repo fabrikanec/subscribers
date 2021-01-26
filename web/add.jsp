@@ -14,11 +14,6 @@
 <body>
 
 <div>
-    <%
-        if (request.getAttribute("userName") != null) {
-            out.println("<p>User '" + request.getAttribute("userName") + "' added!</p>");
-        }
-    %>
     <div>
         <div>
             <h2>Add user</h2>
@@ -26,13 +21,13 @@
 
         <form method="post">
             <label>First name:
-                <input type="text" name="firstName"><br/>
+                <input type="text" name="firstName" required="required"><br/>
             </label>
             <label>Last name:
-                <input type="text" name="lastName"><br/>
+                <input type="text" name="lastName" required="required"><br/>
             </label>
             <label>Work phone:
-                <input type="text" name="workPhone"><br/>
+                <input type="text" name="workPhone" required="required"><br/>
             </label>
             <label>Mobile phone:
                 <input type="text" name="mobile"><br/>

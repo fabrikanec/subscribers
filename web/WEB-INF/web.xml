@@ -12,6 +12,6 @@
     
     <servlet-mapping>
         <servlet-name>SubscriberServlet</servlet-name>
-        <url-pattern>/q</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

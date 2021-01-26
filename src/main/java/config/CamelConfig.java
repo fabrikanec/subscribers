@@ -19,7 +19,7 @@ public class CamelConfig {
 
         YamlConfig config = YamlConfig.load(resource);
 
-        sourcePath = config.getString("services.camelJob.source");
+        sourcePath = config.getString("services.front.work_dir");
         dataPath = config.getString("services.camelJob.data");
     }
 

@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 /**
  * A Camel Router
  */
-public class Camel extends RouteBuilder {
-    private static final Logger logger = LoggerFactory.getLogger(Camel.class);
+public class CamelJob extends RouteBuilder {
+    private static final Logger logger = LoggerFactory.getLogger(CamelJob.class);
     /**
      * A main() so we can easily run these routing rules in our IDE
      */
@@ -31,10 +31,7 @@ public class Camel extends RouteBuilder {
         camel.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-//                from("timer:foo")
-//                        .log("Hello Camel");
-//                from("file:src/data?scheduler=quartz2&scheduler.cron=0+00+21+*+*+*").to("json-validator:myschema.json").log("test log").
-//                from("file:src/data").to("json-validator:myschema.json").log("test log").
+//                from("file:src/work?scheduler=quartz2&scheduler.cron=0+27+13+*+*+?").log("test log").to("json-validator:schema.json").
                 from("file:src/work").log("test log").to("json-validator:schema.json").
                         //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
                                 to("file:target/data");
@@ -46,7 +43,7 @@ public class Camel extends RouteBuilder {
 
         // so run for 10 seconds
         Thread.sleep(10_000); //works if uncommenting
-
+//        Thread.currentThread().join();
         // and then stop nicely
         camel.stop();
     }

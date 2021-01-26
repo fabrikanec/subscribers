@@ -1,0 +1,7 @@
+services:
+  front:
+    image: mysql
+    container_name: mysql_db
+  camelJob:
+    source: src/work
+    data: target/data

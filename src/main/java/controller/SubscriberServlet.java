@@ -8,7 +8,7 @@ import service.SubscriberService;
 //import org.slf4j.LoggerFactory;
 
 //import javax.annotation.Resource;
-import javax.jws.WebService;
+//import javax.jws.WebService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,4 +1,5 @@
 
+import com.github.jsixface.YamlConfig;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -6,20 +7,32 @@ import org.apache.camel.spring.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
+
 /**
  * A Camel Router
  */
-public class CamelJob extends RouteBuilder {
+public class CamelJob {
+    static {
+        InputStream resource = RouteBuilder.class
+                .getClassLoader()
+                .getResourceAsStream("configuration.yml");
+
+        YamlConfig config = YamlConfig.load(resource);
+
+        sourcePath = config.getString("services.camelJob.source");
+        dataPath = config.getString("services.camelJob.data");
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(CamelJob.class);
+    private static String sourcePath;
+    private static String dataPath;
     /**
      * A main() so we can easily run these routing rules in our IDE
      */
     public static void main(String... args) throws Exception {
         logger.info("start");
-//        Main.main(args);
         runCamel();
-
-//        new Main().
     }
 
     private static void runCamel() throws Exception{
@@ -31,10 +44,10 @@ public class CamelJob extends RouteBuilder {
         camel.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-//                from("file:src/work?scheduler=quartz2&scheduler.cron=0+27+13+*+*+?").log("test log").to("json-validator:schema.json").
+//                from("file:" + sourcePath + "?scheduler=quartz2&scheduler.cron=0+27+13+*+*+?").log("files are in processing").to("json-validator:schema.json").
                 from("file:src/work").log("test log").to("json-validator:schema.json").
                         //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
-                                to("file:target/data");
+                                to("file:" + dataPath);
             }
         });
 
@@ -48,14 +61,14 @@ public class CamelJob extends RouteBuilder {
         camel.stop();
     }
 
-    /**
-     * Lets configure the Camel routing rules using Java code...
-     */
-    public void configure() {
-
-        from("file:src/data&scheduler=quartz2&scheduler.cron=0+00+21+*+*+*").to("json-validator:myschema.json").
-                //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
-        to("file:target/well");
-
-    }
+//    /**
+//     * Lets configure the Camel routing rules using Java code...
+//     */
+//    public void configure() {
+//
+//        from("file:src/data&scheduler=quartz2&scheduler.cron=0+00+21+*+*+*").to("json-validator:myschema.json").
+//                //from("quartz2://myGroup/myTimerName?cron=0+0/5+12-18+?+*+MON-FRI").
+//        to("file:target/well");
+//
+//    }
 }

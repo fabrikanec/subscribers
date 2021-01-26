@@ -2,10 +2,14 @@ package config;
 
 import com.github.jsixface.YamlConfig;
 import org.apache.camel.CamelContext;
+import org.apache.camel.Consumer;
+import org.apache.camel.Endpoint;
+import org.apache.camel.Producer;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.component.file.GenericFileFilter;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.impl.DefaultEndpoint;
 import org.springframework.context.annotation.Bean;
 import util.MyFileFilter;
 
@@ -32,7 +36,7 @@ public class CamelConfig {
     }
 
     private static final String sourcePath;
-    private static final String dataPath;
+    public static final String dataPath;
 
 
     public static void runCamel() throws Exception {
@@ -45,18 +49,16 @@ public class CamelConfig {
             @Override
             public void configure() throws Exception {
                 from("file:" + sourcePath + "?noop=true")
+                        .filter()
+                        .method(MyFileFilter.class, "accept")
 //                from("file:" + sourcePath + "?noop=true&filter=#myFilter")
                         .log("files are in processing")
-                        .to("json-validator:schema.json")
-                        .to("file:" + dataPath);
+                        .to("json-validator:schema.json");  // После валидации необходимо добавить choice -- проверку,
+                        // на основе которой решить, в какую директорию переещать файл.
+
+                //TODO добавить ещё одну цепочку обогащения файлов в директории data, переносящую файлы в директорию done.
             }
 
-
-
-            @Bean(name = "myFilter")
-            public <T> MyFileFilter<T> myFilter() {
-                return new MyFileFilter<>();
-            }
         }
 
         camel.addRoutes(new Router());

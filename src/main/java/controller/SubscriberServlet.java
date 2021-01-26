@@ -14,12 +14,6 @@ import java.io.IOException;
 
 public class SubscriberServlet extends HttpServlet {
 
-//    private static final Logger logger = LoggerFactory.getLogger(SubscriberServlet.class);
-
-//    @Resource
-//    SubscriberDao subscriberDao;
-
-    SubscriberService subscriberService = new SubscriberService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

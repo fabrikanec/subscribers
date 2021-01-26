@@ -3,10 +3,18 @@ package config;
 import com.github.jsixface.YamlConfig;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
+import org.apache.camel.component.file.GenericFileFilter;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.springframework.context.annotation.Bean;
+import util.MyFileFilter;
 
 
+import java.io.File;
 import java.io.InputStream;
+import java.time.LocalDate;
+
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 /**
  * A Camel Router
@@ -33,18 +41,28 @@ public class CamelConfig {
 
         // add routes which can be inlined as anonymous inner class
         // (to keep all code in a single java file for this basic example)
-        camel.addRoutes(new RouteBuilder() {
+        class Router extends RouteBuilder {
             @Override
             public void configure() throws Exception {
 //                from("file:" + sourcePath + "?scheduler=quartz2&scheduler.cron=" + cron)
 //                .log("files are in processing")
 //                .to("json-validator:schema.json").
                 from("file:" + sourcePath + "?noop=true")
+//                from("file:" + sourcePath + "?noop=true&filter=#myFilter")
                         .log("files are in processing")
                         .to("json-validator:schema.json")
                         .to("file:" + dataPath);
             }
-        });
+
+
+
+            @Bean(name = "myFilter")
+            public <T> MyFileFilter<T> myFilter() {
+                return new MyFileFilter<>();
+            }
+        }
+
+        camel.addRoutes(new Router());
 
         // start is not blocking
         camel.start();

@@ -1,6 +1,6 @@
 services:
   front:
-    work_dir: /Users/artemnovikov/Downloads/
+    work_dir: src/work
   camelJob:
     source: src/work
     data: target/data

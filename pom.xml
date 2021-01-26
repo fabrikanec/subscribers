@@ -62,6 +62,11 @@
             <version>2.12.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.jsixface</groupId>
+            <artifactId>yamlconfig</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
 

@@ -39,6 +39,8 @@
 
 
             <button type="submit">Отправить</button>
+            <button type="reset">Очистить</button>
+            <button type="button">Очистить</button>
         </form>
     </div>
 </div>

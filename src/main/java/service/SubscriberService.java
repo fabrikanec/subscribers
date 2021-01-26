@@ -59,8 +59,6 @@ public class SubscriberService {
             File fileFlag = new File(destinationFileName.replace(".txt", "") + ".ready");
             fileFlag.createNewFile();
 
-
-
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {

@@ -26,19 +26,19 @@
 
         <form method="post">
             <label>First name:
-                <input type="text" name="name"><br/>
+                <input type="text" name="firstName"><br/>
             </label>
             <label>Last name:
-                <input type="password" name="pass"><br/>
+                <input type="text" name="lastName"><br/>
             </label>
             <label>Work phone:
-                <input type="password" name="pass"><br/>
+                <input type="text" name="workPhone"><br/>
             </label>
             <label>Mobile phone:
-                <input type="password" name="pass"><br/>
+                <input type="text" name="mobile"><br/>
             </label>
             <label>Email:
-                <input type="password" name="pass"><br/>
+                <input type="email" name="email"><br/>
             </label>
 
 

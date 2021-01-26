@@ -1,14 +1,10 @@
 package controller;
 
-import dao.SubscriberDao;
-import dao.SubscriberDaoCsvImpl;
-import model.Subscriber;
 import service.SubscriberService;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
 //import javax.annotation.Resource;
-//import javax.jws.WebService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +29,7 @@ public class SubscriberServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SubscriberService.createJson(req, resp);
+        SubscriberService.createDataFiles(req, resp);
         doGet(req, resp);
     }
 

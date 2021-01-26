@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SubscriberService {
 
 
-    public static void createJson(HttpServletRequest req, HttpServletResponse resp) {
+    public static void createDataFiles(HttpServletRequest req, HttpServletResponse resp) {
         Subscriber subscriber = new Subscriber(req);
 
         ObjectMapper mapper = new ObjectMapper();

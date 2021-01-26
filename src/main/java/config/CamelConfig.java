@@ -44,9 +44,6 @@ public class CamelConfig {
         class Router extends RouteBuilder {
             @Override
             public void configure() throws Exception {
-//                from("file:" + sourcePath + "?scheduler=quartz2&scheduler.cron=" + cron)
-//                .log("files are in processing")
-//                .to("json-validator:schema.json").
                 from("file:" + sourcePath + "?noop=true")
 //                from("file:" + sourcePath + "?noop=true&filter=#myFilter")
                         .log("files are in processing")

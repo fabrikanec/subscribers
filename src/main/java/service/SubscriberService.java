@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SubscriberService {
 
@@ -69,9 +70,10 @@ public class SubscriberService {
     }
 
     private static String createFileName(String destinationDirectoryPath) {
-        StringBuilder name = new StringBuilder();
-        name.append(destinationDirectoryPath).append(File.separator).append("json_").
-                append(LocalDateTime.now().getNano()).append(".txt");
-        return name.toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = LocalDateTime.now().format(formatter);
+
+        return destinationDirectoryPath + File.separator + "json_" +
+                formattedDateTime + ".txt";
     }
 }

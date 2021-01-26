@@ -3,10 +3,8 @@ package config;
 import com.github.jsixface.YamlConfig;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.quartz2.CamelJob;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.InputStream;
 
@@ -23,13 +21,10 @@ public class CamelConfig {
 
         sourcePath = config.getString("services.camelJob.source");
         dataPath = config.getString("services.camelJob.data");
-        cron = config.getString("services.camelJob.cron");
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(CamelJob.class);
     private static final String sourcePath;
     private static final String dataPath;
-    private static final String cron;
 
 
     public static void runCamel() throws Exception {

@@ -97,7 +97,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
-                            <mainClass>config.CamelJob</mainClass>
+                            <mainClass>Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

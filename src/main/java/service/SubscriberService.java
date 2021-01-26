@@ -70,7 +70,7 @@ public class SubscriberService {
     }
 
     private static String createFileName(String destinationDirectoryPath) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyy HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyy_HHmm");
         String formattedDateTime = LocalDateTime.now().format(formatter);
 
         return destinationDirectoryPath + File.separator + "json_" +

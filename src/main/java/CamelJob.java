@@ -1,6 +1,7 @@
 
 import com.github.jsixface.YamlConfig;
 import org.apache.camel.CamelContext;
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spring.Main;
@@ -29,7 +30,7 @@ public class CamelJob {
     private static final String sourcePath;
     private static final String dataPath;
     private static final String cron;
-    
+
     /**
      * A main() so we can easily run these routing rules in our IDE
      */

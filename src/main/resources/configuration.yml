@@ -5,3 +5,4 @@ services:
   camelJob:
     source: src/work
     data: target/data
+    cron: 0+27+13+*+*+?

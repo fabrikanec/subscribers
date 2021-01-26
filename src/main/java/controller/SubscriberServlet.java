@@ -34,5 +34,4 @@ public class SubscriberServlet extends HttpServlet {
     }
 
 
-
 }

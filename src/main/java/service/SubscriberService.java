@@ -42,9 +42,15 @@ public class SubscriberService {
             File jsonFile = new File(filePath + separator + "jsondata.txt");
             mapper.writeValue(jsonFile, subscriber);
 
-            //move JSON file to dir 'work' and rename it
-            File destinationDirectory = new File(filePath + separator + "work");
-            if (! destinationDirectory.exists()){
+            //move JSON file to dir 'work'/'prepare' and rename it
+            File destinationDirectory;
+            if (req.getParameter("bt") != null &&
+                    req.getParameter("bt").equals("Add")) {
+                destinationDirectory = new File(filePath + separator + "prepare");
+            } else {
+                destinationDirectory = new File(filePath + separator + "work");
+            }
+            if (!destinationDirectory.exists()) {
                 // If you require it to make the entire destinationDirectory path including parents,
                 // use destinationDirectory.mkdirs(); here instead.
                 destinationDirectory.mkdir();
@@ -57,8 +63,11 @@ public class SubscriberService {
                 e.printStackTrace();
             }
             //create file-flag
-            File fileFlag = new File(destinationFileName.replace(".txt", "") + ".ready");
-            fileFlag.createNewFile();
+            if (req.getParameter("bt") == null ||
+                    !req.getParameter("bt").equals("Add")) {
+                File fileFlag = new File(destinationFileName.replace(".txt", "") + ".ready");
+                fileFlag.createNewFile();
+            }
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();

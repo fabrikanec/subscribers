@@ -40,7 +40,12 @@
 
             <button type="submit">Отправить</button>
             <button type="reset">Очистить</button>
-            <button type="button">Очистить</button>
+            <button type="submit">Отправить2</button>
+
+            <form action="" name="logServlet" method="post">
+                <br/><input type="submit" value="Add" name="bt"/>
+            </form>
+
         </form>
     </div>
 </div>

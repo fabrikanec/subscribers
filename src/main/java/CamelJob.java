@@ -26,9 +26,10 @@ public class CamelJob {
     }
 
     private static final Logger logger = LoggerFactory.getLogger(CamelJob.class);
-    private static String sourcePath;
-    private static String dataPath;
-    private static String cron;
+    private static final String sourcePath;
+    private static final String dataPath;
+    private static final String cron;
+    
     /**
      * A main() so we can easily run these routing rules in our IDE
      */
@@ -60,7 +61,7 @@ public class CamelJob {
         Thread.sleep(10_000); //works if uncommenting
 //        Thread.currentThread().join();
         // and then stop nicely
-        camel.stop();
+//        camel.stop();
     }
 
 //    /**

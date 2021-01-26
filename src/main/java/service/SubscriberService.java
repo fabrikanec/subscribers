@@ -3,19 +3,34 @@ package service;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.jsixface.YamlConfig;
 import model.Subscriber;
+import org.apache.camel.builder.RouteBuilder;
 import org.apache.commons.io.FileUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.FileSystem;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
 public class SubscriberService {
+
+    private static final String sourcePath;
+
+    static {
+        InputStream resource = RouteBuilder.class
+                .getClassLoader()
+                .getResourceAsStream("configuration.yml");
+
+        YamlConfig config = YamlConfig.load(resource);
+
+        sourcePath = config.getString("services.front.work_dir");
+    }
 
 
     public static void createDataFiles(HttpServletRequest req, HttpServletResponse resp) {
@@ -24,7 +39,7 @@ public class SubscriberService {
         ObjectMapper mapper = new ObjectMapper();
         try {
             //Convert object to JSON string and save into file directly
-            String filePath = System.getProperty("user.dir");
+            String filePath = sourcePath;
             String separator = File.separator;
             File jsonFile = new File(filePath + separator + "jsondata.txt");
             mapper.writeValue(jsonFile, subscriber);

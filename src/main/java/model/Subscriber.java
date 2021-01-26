@@ -1,5 +1,6 @@
 package model;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 public class Subscriber {
@@ -10,6 +11,18 @@ public class Subscriber {
     private String workPhone;
     private String mobile;
     private String email;
+
+    public Subscriber() {
+
+    }
+
+    public Subscriber(HttpServletRequest req) {
+        firstName = req.getParameter("firstName");
+        lastName = req.getParameter("lastName");
+        workPhone = req.getParameter("workPhone");
+        mobile = req.getParameter("mobile");
+        email = req.getParameter("email");
+    }
 
     public String getFirstName() {
         return firstName;

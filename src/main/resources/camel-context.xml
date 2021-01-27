@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	 http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+
+		<route customId="true" id="route1">
+
+			<!-- Read files from input directory -->
+			<from uri="file://src/test/data/input?noop=true" />
+
+			<choice>
+				<when>
+					<simple>${in.header.CamelFileName.endsWith('.ready')}</simple>
+					<to uri="direct:processFileReady" />
+				</when>
+			</choice>
+
+
+		</route>
+
+		<route customId="true" id="routeProcessFileReady">
+			<from uri="direct:processFileReady" />
+
+			<process ref="myFileProcessorReady" />
+
+			<doTry>
+				<to uri="json-validator:schema.json"/>
+				<doCatch>
+					<exception>org.apache.camel.component.jsonvalidator.JsonValidationException</exception>
+					<setHeader headerName="jsonValidationFailed">
+						<constant>true</constant>
+					</setHeader>
+				</doCatch>
+			</doTry>
+
+			<choice>
+				<when>
+					<simple>${in.header.jsonValidationFailed} == 'true'</simple>
+					<to uri="file://src/test/data/error"/>
+					<transform>
+						<simple>.......... File processing failed ..........</simple>
+					</transform>
+					<to uri="stream:out" />
+				</when>
+				<otherwise>
+					<to uri="direct:processFile"/>
+				</otherwise>
+			</choice>
+
+		</route>
+
+		<route>
+			<from uri="direct:processFile" />
+			<process ref="enrichProcessor" />
+
+			<to uri="file://src/test/data/processed" />
+
+			<transform>
+				<simple>.......... File processing completed ..........</simple>
+			</transform>
+			<to uri="stream:out" />
+
+		</route>
+
+	</camelContext>
+
+	<bean id="enrichProcessor" class="processor.EnrichProcessor" />
+	<bean id="myFileProcessorReady" class="processor.FileProcessorReady" />
+</beans>
